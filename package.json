@@ -1,0 +1,19 @@
+{
+  "name": "rss-reader-backend",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "deploy": "wrangler publish",
+    "dev": "wrangler dev",
+    "devl": "wrangler dev --local --test-scheduled"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20230419.0",
+    "itty-router": "^3.0.12",
+    "wrangler": "^3.0.0"
+  },
+  "dependencies": {
+    "htmlparser2": "^9.0.0",
+    "luxon": "^3.3.0"
+  }
+}
