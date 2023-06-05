@@ -111,13 +111,13 @@ const updateSubscribeInfo = async (event, env, ctx) => {
         
         // 判断item pubDate 是否小于 lastBuildDate，如果小于，跳出循环
         if (item.pubDate < subscribe.lastBuildDate) {
-          await updateSubscribeLastBuildDate(subscribe.id, now.toISO());
           break;
         }
 
         await addRssItem(item);
       }
     }
+    await updateSubscribeLastBuildDate(subscribe.id, now.toISO());
   }
 
 }

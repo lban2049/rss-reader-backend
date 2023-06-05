@@ -1,6 +1,7 @@
 import { Router } from 'itty-router';
 import { getAllSubscribes, addSubscribe } from './rss/rssSubscribes';
 import { dbResult, ok } from './result';
+import { queryRssItems } from './rss/rssItems';
 
 // now let's create a router (note the lack of "new")
 const router = Router();
@@ -19,18 +20,25 @@ router.post('/api/subscriptions/add', async (request) => {
 	return dbResult(result);
 });
 
-// GET collection index
-router.get('/api/todos', () => new Response('Todos Index!'));
-
-// GET item
-router.get('/api/todos/:id', ({ params }) => new Response(`Todo #${params.id}`));
-
-// POST to the collection (we'll use async here)
-router.post('/api/todos', async (request) => {
-	const content = await request.json();
-
-	return new Response('Creating Todo: ' + JSON.stringify(content));
+// 查询订阅内容
+router.get('/api/subscriptions/items', async (request) => {
+	const { subscribeId, isRead, lastDate, pageSize } = request.query;
+	const items = await queryRssItems(subscribeId, isRead, lastDate, pageSize);
+	return dbResult(items);
 });
+
+// // GET collection index
+// router.get('/api/todos', () => new Response('Todos Index!'));
+
+// // GET item
+// router.get('/api/todos/:id', ({ params }) => new Response(`Todo #${params.id}`));
+
+// // POST to the collection (we'll use async here)
+// router.post('/api/todos', async (request) => {
+// 	const content = await request.json();
+
+// 	return new Response('Creating Todo: ' + JSON.stringify(content));
+// });
 
 const handleOptions = (req) => new Response('',{
 	headers: { 
