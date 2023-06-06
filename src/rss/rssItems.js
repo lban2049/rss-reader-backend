@@ -55,7 +55,15 @@ const queryRssItems = async (subscribeId, isRead, lastDate, pageSize) => {
   }
 }
 
+// 修改内容为已读
+const updateRssItemRead = async (id) => {
+  const db = getDB();
+  const sql = 'UPDATE rss_subscribe_items SET isRead = 1 WHERE id = ?';
+  return await db.prepare(sql).bind(id).run();
+}
+
 export {
   addRssItem,
   queryRssItems,
+  updateRssItemRead,
 }

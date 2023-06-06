@@ -1,7 +1,7 @@
 import { Router } from 'itty-router';
 import { getAllSubscribes, addSubscribe } from './rss/rssSubscribes';
 import { dbResult, ok } from './result';
-import { queryRssItems } from './rss/rssItems';
+import { queryRssItems, updateRssItemRead } from './rss/rssItems';
 
 // now let's create a router (note the lack of "new")
 const router = Router();
@@ -25,6 +25,14 @@ router.get('/api/subscriptions/items', async (request) => {
 	const { subscribeId, isRead, lastDate, pageSize } = request.query;
 	const items = await queryRssItems(subscribeId, isRead, lastDate, pageSize);
 	return dbResult(items);
+});
+
+// 修改内容为已读
+router.post('/api/subscriptions/items/read', async (request) => {
+	const content = await request.json();
+	const result = await updateRssItemRead(content.id);
+
+	return dbResult(result);
 });
 
 // // GET collection index
