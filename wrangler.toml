@@ -39,11 +39,6 @@ compatibility_date = "2023-05-30"
 # [env.shared]
 # SHARED_VARIABLE = "shared_value"
 
-# [[d1_databases]]
-# binding = "RSSDB" # i.e. available in your Worker on env.DB
-# database_name = "rss-reader"
-# database_id = "4cf3e3fd-eb8a-4fe1-b49e-47051a15865c"
-
 #  wrangler d1 execute rss-reader-prod --local --file=./sql/items.sql
 
 [[d1_databases]]
