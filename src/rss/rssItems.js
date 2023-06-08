@@ -23,7 +23,7 @@ const queryRssItems = async (subscribeId, isRead, lastDate, pageSize) => {
   }
 
   if (lastDate !== undefined) {
-    sql += ' AND pubDate > ?';
+    sql += ' AND pubDate < ?';
   }
 
   sql += ' ORDER BY pubDate DESC';

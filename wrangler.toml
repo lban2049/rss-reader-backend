@@ -51,5 +51,5 @@ binding = "RSSDB" # i.e. available in your Worker on env.DB
 database_name = "rss-reader-prod"
 database_id = "2cb73d27-f27e-4844-adbe-4163f4830ffd"
 
-[triggers]
-crons = ["0 */1 * * *"]
+# [triggers]
+# crons = ["0 */1 * * *"]
